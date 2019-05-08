@@ -21,6 +21,11 @@ typedef struct calendario{
     bool matriz[18][7];
 }Calendario;
 
+typedef struct solucao{
+    Reuniao reunioes[9];
+    int fo;
+}Solucao;
+
 
 int qtdCalLin, qtdCalCol;
 int qtdProf, qtdHorLin, qtdHorCol;
@@ -31,22 +36,21 @@ int qtdReuTerTurnoTotal;
 
 Professor listaProfessores[16];
 Calendario calendario;
-Reuniao reunioes[9];
 
 int pesos[7] = {10,5,1,1,100,500,500};
 
 void lerDados(char *arq);
 void testarDados(char *arq);
 void zerarVariaveis();
-void heuCon();
-void calRestricoes();
+void heuCon(Solucao &s);
+void calRestricoes(Solucao &s);
 float calRestricao2();
 float calRestricao5();
-float calRestricao6();
-float calRestricao7();
-int calQtdReuMes(int op);
-void calFO();
-void escreverResultado();
+float calRestricao6(Solucao &s);
+float calRestricao7(Solucao &s);
+int calQtdReuMes(Solucao &s, int op);
+void calFO(Solucao &s);
+void escreverResultado(Solucao &s);
 
 
 
