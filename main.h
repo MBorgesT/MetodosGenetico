@@ -1,9 +1,13 @@
 #ifndef PMM1_H_INCLUDED
 #define PMM1_H_INCLUDED
 
-#define ALPHA 7
+#define ALPHA 7 //taxa para heuristica
+#define BETA 4 //taxa para mutacao
+#define TAM_POP 30
+#define QTD_CRUZ 10
+#define MUTACAO 10
 
-//TODO: mudar a estrutura professor para poder dar memset somente em certas variaveis
+
 typedef struct professor{
     bool horario[6][5];
     bool tercTunro[2][5];
@@ -27,6 +31,8 @@ typedef struct solucao{
 }Solucao;
 
 
+Solucao pop[TAM_POP + QTD_CRUZ];
+
 int qtdCalLin, qtdCalCol;
 int qtdProf, qtdHorLin, qtdHorCol;
 
@@ -43,6 +49,7 @@ void lerDados(char *arq);
 void testarDados(char *arq);
 void zerarVariaveis();
 void heuCon(Solucao &s);
+void heuAle(Solucao &s);
 void calRestricoes(Solucao &s);
 float calRestricao2();
 float calRestricao5();
@@ -51,6 +58,13 @@ float calRestricao7(Solucao &s);
 int calQtdReuMes(Solucao &s, int op);
 void calFO(Solucao &s);
 void escreverResultado(Solucao &s);
+void escreverResultadoSimp(Solucao &s);
+void gerarPop();
+void mutacao(Solucao &s);
+void cruzamento(Solucao s1, Solucao s2, Solucao &f1, Solucao &f2);
+void ordenacao();
+void crossover();
+void epidemia();
 
 
 
