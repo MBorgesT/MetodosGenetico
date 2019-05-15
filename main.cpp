@@ -19,13 +19,10 @@ int main() {
     testarDados("teste.txt");
 
     gerarPop();
-    ordenacao();
 
     int i = 0, aux, flag;
-    while(i < 500000) {
-        if (i % 1000 == 0) {
-            printf("%i\t%i\n", i, pop[0].fo);
-        }
+    while(i < 1000000) {
+        printf("%i\t%i\n", i, pop[0].fo);
 
         aux = pop[0].fo;
         flag = 1;
@@ -37,6 +34,7 @@ int main() {
         }
         if (flag == 1){
             epidemia();
+            //printf("%i\tfo: %i\tep ep ep ep ep ep ep ep\n", i, pop[0].fo);
         }
 
         crossover();
@@ -44,6 +42,8 @@ int main() {
     }
     calFO(pop[0]);
     escreverResultado(pop[0]);
+
+
 
     return 0;
 }
@@ -404,7 +404,9 @@ void mutacao(Solucao &s){
     }
 }
 
+//TODO: passar só indices para f1 e f2
 void cruzamento(Solucao s1, Solucao s2, Solucao &f1, Solucao &f2){
+    //fazer com atribuições diretas
     for (int i = 0; i < 9; i++){
         memcpy(&f1.reunioes[i], &(i % 2 == 0 ? s1 : s2).reunioes[i], sizeof(f1.reunioes[i]));
     }
@@ -443,7 +445,13 @@ void ordenacao(){
 
 void crossover(){
     for (int i = 0; i < QTD_CRUZ/2; i++){
-        cruzamento(pop[rand() % 10], pop[rand() % 30], pop[TAM_POP + (i*2)], pop[TAM_POP + ((i*2)+1)]);
+        //TODO: do while para checar a == b
+        int a = rand() % TAM_POP/10, b = rand() % TAM_POP;
+        if (a != b) {
+            cruzamento(pop[a], pop[b], pop[TAM_POP + (i * 2)], pop[TAM_POP + ((i * 2) + 1)]);
+        }else{
+            i--;
+        }
     }
     ordenacao();
 }

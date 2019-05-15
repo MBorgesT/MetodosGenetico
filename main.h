@@ -3,8 +3,8 @@
 
 #define ALPHA 7 //taxa para heuristica
 #define BETA 4 //taxa para mutacao
-#define TAM_POP 30
-#define QTD_CRUZ 10
+#define TAM_POP 100
+#define QTD_CRUZ 160
 #define MUTACAO 10
 
 
